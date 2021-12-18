@@ -1,0 +1,48 @@
+program planetas;
+
+type 
+    planeta = record
+      masa: real; 
+      atmosfera: string; 
+      estado: string; 
+      end; 
+    
+    lista = ^nodo; 
+    nodo = record
+      dato: planeta; 
+      sig: lista; 
+      end; 
+procedure leerPlaneta(var p: planeta); 
+begin 
+     with p do begin  
+       writeln('ingrese masa'); 
+       readln(masa);
+       if(masa <> 0)then begin
+       writeln('ingrese atmosfera');
+       readln(atmosfera); 
+       writeln('ingrese estado');
+       readln(estado); 
+       end; 
+       end; 
+end; 
+
+procedure agregarAdelante(var l: lista; p: planeta);
+var 
+   nue: lista; 
+begin 
+   new(nue); 
+   nue^.dato:= p; 
+   nue^.sig:= l; 
+   l:= nue; 
+end;      
+
+var 
+   l: lista; p: planeta; 
+begin 
+   leerPlaneta(p); 
+   while (p.masa <> 0)do begin 
+     agregarAdelante(l,p); 
+     leerPlaneta(p); 
+     end; 
+end.                         
+   
